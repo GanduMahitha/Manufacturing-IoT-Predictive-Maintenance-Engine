@@ -1,5 +1,4 @@
 # Manufacturing-IoT-Predictive-Maintenance-Engine
-# Manufacturing-IoT-Predictive-Maintenance-Engine
 
 ## Project Overview
 The Manufacturing – IoT Predictive Maintenance Engine is a machine learning–based system designed to predict machine failures in advance using time-series IoT sensor data.
