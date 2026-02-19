@@ -45,9 +45,9 @@ except:
     df.to_csv("data/sensor_data.csv", index=False)
     print("Dataset created and saved.")
 
-# --------------------------------------------------
+
 # WEEK 1: FEATURE ENGINEERING
-# --------------------------------------------------
+
 
 df["temp_roll_mean"] = df["temperature"].rolling(6).mean()
 df["vib_roll_std"] = df["vibration"].rolling(6).std()
@@ -57,9 +57,9 @@ df = df.dropna()
 
 print("Feature Engineering Completed.")
 
-# --------------------------------------------------
+
 # WEEK 2: MODEL TRAINING
-# --------------------------------------------------
+
 
 X = df.drop("failure", axis=1)
 y = df["failure"]
@@ -81,9 +81,9 @@ print("PR-AUC Score:", round(pr_auc, 3))
 joblib.dump(model, "models/model.pkl")
 print("Model saved successfully.")
 
-# --------------------------------------------------
+
 # WEEK 3: SHAP EXPLAINABILITY
-# --------------------------------------------------
+
 
 print("Generating SHAP feature importance plot...")
 
@@ -120,4 +120,14 @@ def predict():
 if __name__ == "__main__":
     app.run(debug=True)
 
-]
+
+from xgboost import XGBClassifier
+
+model = XGBClassifier(
+    n_estimators=100,
+    max_depth=3,
+    learning_rate=0.1,
+    eval_metric="logloss"
+)
+
+model.fit(X_train, y_train)
